@@ -74,6 +74,15 @@ class store{
         });
         localStorage.setItem('books',JSON.stringify(books))
     }
+    static showalert(message,className){
+        const div=document.createElement('div');
+        div.className=`alert alert-${className}`;
+        div.appendChild(document.createTextNode(message));
+        const cont=document.querySelector('.container');
+        const form=document.querySelector('#book-form')
+        cont.insertBefore(div,form);
+        setTimeout(function() {document.querySelector('.alert').remove()},3000)
+    }
 
 }
 
@@ -111,3 +120,5 @@ document.querySelector('#book-list').addEventListener('click',(e)=>{
     store.removebook(e.target.parentElement.previousElementSibling.textContent);
     UI.showalert('book removed','success')
 })
+
+let search=document.querySelector('#input-search'),value;
